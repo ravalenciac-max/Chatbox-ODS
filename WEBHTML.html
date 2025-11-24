@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EntreNos — Apoyo en Trastornos Alimenticios</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-1: #eef9fb;
+      --bg-2: #f6fbff;
+      --card: #ffffff;
+      --accent: #0b63d8;
+      --accent-2: #1587ff;
+      --muted: #556071;
+      --danger: #e02424;
+      --success: #16a34a;
+      --glass: rgba(255,255,255,0.65);
+      --radius: 14px;
+      --maxw: 1200px;
+      --shadow-1: 0 8px 30px rgba(10,20,40,0.06);
+      --focus: 0 0 0 4px rgba(21,128,255,0.12);
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color-scheme: light;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      color:#071126;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      font-size:16px;
+    }
+
+    /* Header */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid rgba(10,20,40,0.04);
+    }
+    .nav{
+      max-width:var(--maxw);
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 18px;
+    }
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{
+      width:48px;height:48px;border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:white;font-weight:800;display:flex;align-items:center;justify-content:center;
+      box-shadow: 0 6px 18px rgba(11,99,216,0.14);
+      font-size:18px;
+    }
+    nav a{
+      margin-left:14px;color:var(--muted);text-decoration:none;font-weight:600;
+    }
+    .cta{
+      background:var(--accent);color:white;padding:10px 14px;border-radius:10px;
+      text-decoration:none;font-weight:700;box-shadow: 0 10px 30px rgba(21,128,255,0.12);
+      display:inline-flex;align-items:center;gap:8px;
+    }
+    .cta:focus{outline:none;box-shadow:var(--focus)}
+
+    main{
+      max-width:var(--maxw);
+      margin:28px auto;
+      padding:20px;
+    }
+
+    /* Hero */
+    .hero{
+      display:flex;gap:28px;align-items:center;justify-content:space-between;
+      flex-wrap:wrap;padding:28px;border-radius:var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(250,253,255,0.9));
+      box-shadow: var(--shadow-1);
+      border:1px solid rgba(10,20,40,0.03);
+    }
+    .hero-left{flex:1 1 480px;min-width:260px}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:800;margin-bottom:8px}
+    h1{margin:0 0 12px 0;font-size:30px;line-height:1.05}
+    p.lead{margin:0 0 18px 0;color:var(--muted);font-size:16px}
+    .buttons{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:10px 14px;border-radius:10px;border:1px solid rgba(10,20,40,0.06);
+         background:transparent;color:var(--accent);font-weight:700;text-decoration:none}
+    .btn.primary{
+      background:var(--accent);color:white;border:none;box-shadow:0 12px 28px rgba(11,99,216,0.12)
+    }
+    .btn:focus{outline:none;box-shadow:var(--focus)}
+    .muted{color:var(--muted)}
+
+    .hero-right{flex:0 1 360px;min-width:260px}
+    .card{
+      background:var(--card);
+      border-radius:12px;padding:18px;
+      box-shadow: 0 8px 26px rgba(10,20,40,0.04);border:1px solid rgba(10,20,40,0.03)
+    }
+
+    .emergency{display:flex;gap:12px;align-items:center}
+    .phone a{display:block;font-weight:800;color:var(--danger);text-decoration:none}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(11,99,216,0.06);color:var(--accent);font-weight:700;font-size:13px}
+
+    /* Grid: info */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+      margin-top:22px;
+    }
+    @media (max-width:980px){ .grid{grid-template-columns:repeat(1,1fr);} }
+
+    .info{padding:18px;border-radius:12px;background:linear-gradient(180deg,#ffffff,#fbfdff);box-shadow:0 6px 20px rgba(10,20,40,0.03)}
+
+    .list{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+    .list .item{display:flex;gap:12px;align-items:flex-start}
+    .bullet{min-width:36px;height:36px;border-radius:8px;background:var(--glass);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent)}
+
+    /* Donut chart area */
+    .stats{
+      display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:18px;
+    }
+    .donut-wrap{width:220px;height:220px;display:flex;align-items:center;justify-content:center}
+    .donut-center{position:absolute;font-weight:800;color:var(--muted);font-size:14px}
+
+    /* Resources */
+    .resources{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px;
+    }
+    @media (max-width:900px){ .resources{grid-template-columns:repeat(1,1fr);} }
+
+    .resource-card{background:linear-gradient(180deg,#fff,#f7fbff);padding:14px;border-radius:12px;border:1px solid rgba(10,20,40,0.03);cursor:pointer;transition:transform .18s,box-shadow .18s}
+    .resource-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(11,99,216,0.06)}
+
+    /* Footer */
+    footer{margin-top:32px;padding:28px 18px;color:var(--muted);border-top:1px solid rgba(10,20,40,0.04)}
+    .footer-grid{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1fr 240px;gap:18px;align-items:start}
+    @media (max-width:900px){ .footer-grid{grid-template-columns:1fr;} }
+    .resource-list a{color:var(--accent);font-weight:700;text-decoration:none;display:block;margin:6px 0}
+
+    /* Modal chat */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.45);display:none;align-items:center;justify-content:center;z-index:80}
+    .modal{width:100%;max-width:760px;background:white;border-radius:14px;padding:18px;box-shadow:0 24px 60px rgba(2,6,23,0.4)}
+    .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+    .close-btn{background:transparent;border:none;font-size:20px;cursor:pointer;color:var(--muted)}
+    .chat-window{height:380px;border-radius:10px;border:1px solid rgba(10,20,40,0.05);padding:12px;overflow:auto;background:linear-gradient(180deg,#fbfdff,#ffffff)}
+    .chat-controls{display:flex;gap:8px;margin-top:12px}
+    .input{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(10,20,40,0.06)}
+
+    /* tiny helpers */
+    .sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+    .muted-small{color:var(--muted);font-size:14px}
+    .kbd{background:rgba(10,20,40,0.04);padding:6px 8px;border-radius:6px;font-weight:700}
+    .stat-legend{display:flex;flex-direction:column;gap:8px}
+    .legend-item{display:flex;align-items:center;gap:8px;font-weight:700}
+    .legend-dot{width:12px;height:12px;border-radius:4px}
+    .search-row{display:flex;gap:8px;align-items:center;margin-top:8px}
+    .search-input{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(10,20,40,0.06)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav" role="navigation" aria-label="Principal">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">EN</div>
+        <div>
+          <div style="font-weight:800;">EntreNos</div>
+          <div class="muted-small">Apoyo en Trastornos Alimenticios</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;">
+        <nav aria-label="Secciones principales">
+          <a href="#info">Información</a>
+          <a href="#profesionales">Profesionales</a>
+          <a href="#recursos">Recursos</a>
+        </nav>
+
+        <a href="#chat" class="cta" id="openChatBtn" style="margin-left:18px">💬 Chat IA</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-left">
+        <div class="eyebrow">¿Qué son los Trastornos Alimenticios?</div>
+        <h1 id="hero-title">Información esencial sobre estas condiciones de salud mental</h1>
+        <p class="lead">Los trastornos de la conducta alimentaria (TCA) son afecciones graves que afectan la salud física y emocional. Aquí encontrarás orientación, recursos y apoyo profesional para ti o un ser querido.</p>
+
+        <div class="buttons">
+          <a class="btn primary" href="#info">Explorar información</a>
+          <a class="btn" href="#recursos">Ver recursos</a>
+        </div>
+
+        <div style="margin-top:16px" class="muted-small">
+          <strong>EntreNos</strong><br>
+          Información con fines educativos. No sustituye el diagnóstico o tratamiento profesional.
+        </div>
+      </div>
+
+      <aside class="hero-right" aria-label="Bloque de ayuda inmediata" role="complementary">
+        <div class="card" aria-live="polite">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-weight:800">¿Necesitas ayuda inmediata?</div>
+              <div class="muted-small">Si tú o alguien que conoces está en crisis, contacta la línea de emergencia disponible 24/7.</div>
+            </div>
+          </div>
+
+          <div style="margin-top:14px" class="emergency" aria-hidden="false">
+            <div class="phone" style="min-width:120px">
+              <div class="muted-small">Teléfono de emergencia</div>
+              <a href="tel:900202010" aria-label="Llamar al 900 20 20 10">900 20 20 10</a>
+              <a href="tel:112" class="muted-small" aria-label="Llamar al 112">112</a>
+            </div>
+
+            <div style="margin-left:auto;text-align:right">
+              <div class="muted-small">Apoyo profesional</div>
+              <div class="chip" role="button" tabindex="0" aria-pressed="false">Trabajar con especialistas</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px" class="muted-small">Emergencias: Si estás en crisis, contacta inmediatamente. Disponible 24/7.</div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- GRID: Info -->
+    <section id="info" style="margin-top:24px;">
+      <div class="grid" role="region" aria-label="Información principal">
+
+        <div class="info card" aria-labelledby="que">
+          <div>
+          <h3 id="que">¿Qué es ODS 3: SALUD Y BIENESTAR?</h3>
+          <p class="muted-small">La ODS 3 es fundamental para la Agenda 2030, ya que con este objetivo se busca que todos los ciudadanos de todas las edades y género puedan tener acceso a una salud de calidad.Garantizando una vida sana, ya sea en el ámbito físico como mental. De esta manera, se podrá poner fin a las desigualdades y la pobreza.</p>
+          </div>
+           <div>
+          <h3 id="que">Problemática</h3>
+          <p class="muted-small">En los colegios de Lima Metropolitana, muchos adolescentes de 15 y 16 años presentan distintos Trastornos de la Conducta Alimentaria (TCA), como anorexia, bulimia y trastorno por atracón. Esta problemática surge por la presión social, los estándares irreales de belleza en redes sociales y la falta de servicios psicológicos y nutricionales en las instituciones educativas. Debido a esto, los jóvenes no reciben apoyo adecuado, se sienten solos, temen ser juzgados y recurren a conductas que ponen en riesgo su salud física y emocional.</p>
+          </div>
+        </div>
+
+        <div class="info card" aria-labelledby="apoyo">
+          <h3 id="apoyo">¿Que proponemos?</h3>
+          <p class="muted-small">Como manera de solución temporal o forma de salida, hemos ideado un chatbot especializado en medir en base a la evaluación emocional calificada del 1 al 10, la cual tiene en cuenta la ansiedad, identificación de problemas (Bulimia, Anorexia, etc) entre otras preguntas, en base la calificación y resultado. El bot te soltará una frase motivacional e incluso un consejo para mejorar tu alimentación.
+          </p>
+        </div>
+
+        <div class="info card" aria-labelledby="comunidad">
+          <div>
+          <h3 id="comunidad">Misión</h3>
+          <p class="muted-small">Mediante un chatbot amigable brindar un acompañamiento emocional y seguro a los adolescentes que posiblemente padecen trastornos de conducta alimenticia.</p>
+          <p style="margin-top:10px" class="muted-small">En el cual promueva la prevención y búsqueda de apoyo profesional. Colaborando a una cultura de autocuidado.</p>
+        </div>
+        <div>
+          <h3 id="comunidad">Visión</h3>
+          <p class="muted-small">Transformarnos en una herramienta que apoye jóvenes, incluyendo positivamente la tecnología y educación mental.</p>
+          <p style="margin-top:10px" class="muted-small">De esa forma, se podrá construir una generación que pida ayuda sin miedo y con confianza, encontrando en la empatía un camino hacia el bienestar.</p>
+        </div>
+        </div>
+
+      </div>
+
+      <!-- Stats + donut -->
+      <div class="stats">
+        <div style="flex:1;min-width:260px;">
+          <h3>Cifras clave</h3>
+          <p class="muted-small">Distribución aproximada por tipo de TCA (datos informativos).</p>
+
+          <div style="display:flex;gap:12px;align-items:center;margin-top:12px;flex-wrap:wrap">
+            <div class="donut-wrap" id="donutWrap" aria-hidden="false" style="position:relative">
+              <!-- SVG donut injected by JS -->
+              <div class="donut-center" id="donutCenter" aria-hidden="true">Cifras</div>
+            </div>
+
+            <div style="min-width:200px" class="stat-legend" aria-hidden="false">
+              <div class="legend-item"><span class="legend-dot" style="background:#1f6fe0"></span> Anorexia</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#2db7ff"></span> Bulimia</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#7ad8ff"></span> Atracones</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="flex:1;min-width:260px">
+          <h3>Acciones rápidas</h3>
+          <ol class="muted-small">
+            <li>Si hay riesgo inmediato, llama a emergencias o a una línea de crisis.</li>
+            <li>Busca apoyo profesional: medicina, psicología y nutrición.</li>
+            <li>Si eres familiar, infórmate y acompaña desde la empatía.</li>
+          </ol>
+
+          <div style="margin-top:12px">
+            <a class="btn primary" href="#recursos">Encuentra ayuda</a>
+            <button class="btn" id="selfCheckBtn" style="margin-left:8px">Auto-evaluación rápida</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education + Emergencies -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px">
+        <div class="card info" aria-labelledby="educ">
+          <h3 id="educ">Educación</h3>
+          <p class="muted-small">Materiales, talleres y formación para profesionales y comunidades — diseñados para reducir estigma y mejorar detección temprana.</p>
+        </div>
+
+        <div class="card info" aria-labelledby="emerg">
+          <h3 id="emerg">Emergencias</h3>
+          <p class="muted-small">Si estás en crisis, contacta de inmediato:</p>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">
+            <a class="btn primary" href="tel:900202010">📞 900 20 20 10</a>
+            <a class="btn" href="tel:112">📞 112</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recursos -->
+    <section id="recursos" style="margin-top:22px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <h3 style="margin:0">Recursos</h3>
+        <div style="display:flex;gap:8px;align-items:center">
+          <div class="search-row" style="margin:0">
+            <input id="searchInput" class="search-input" placeholder="Buscar recurso (ej. psicólogo, grupo)" aria-label="Buscar recurso"/>
+            <select id="filterSelect" class="search-input" aria-label="Filtrar tipo">
+              <option value="all">Todos</option>
+              <option value="servicio">Servicio</option>
+              <option value="organizacion">Organización</option>
+              <option value="grupo">Grupo</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="resources" id="resourcesList" style="margin-top:12px" role="list">
+        <!-- JS will populate -->
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div style="font-weight:800;font-size:18px">EntreNos</div>
+          <div class="muted-small" style="margin-top:6px">Juntos en el camino — Hecho para ayudarte</div>
+
+          <div style="margin-top:12px" class="muted-small">© 2025 EntreNos - Apoyo en Trastornos Alimenticios. Información con fines educativos.</div>
+        </div>
+
+        <div>
+          <div style="font-weight:700">Contacto</div>
+          <div class="muted-small" style="margin-top:6px">
+            <div>Tel: <a href="tel:112">112</a></div>
+            <div>Tel: <a href="tel:900202010">900 20 20 10</a></div>
+            <div style="margin-top:8px">Hacer remix con Figma Make</div>
+            <div style="margin-top:6px"><a href="https://www.figma.com/community/make" target="_blank" rel="noopener">Figma Make</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom" style="max-width:var(--maxw);margin:12px auto 0;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div class="muted-small">Hecho con ❤️ para ayudarte</div>
+        <div class="muted-small">Diseño e información: EntreNos</div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Chat modal -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="chatTitle">
+      <div class="modal-header">
+        <div>
+          <div id="chatTitle" style="font-weight:800">Chat de Ayuda IA</div>
+          <div class="muted-small">Espacio seguro. En caso de crisis, llama a emergencias.</div>
+        </div>
+        <button class="close-btn" id="closeModal" aria-label="Cerrar chat">✕</button>
+      </div>
+
+      <div class="chat-window" id="chatWindow" aria-live="polite">
+        <div class="muted-small">Chat iniciado. Este es un asistente de apoyo emocional. Si hay riesgo, llama a emergencias.</div>
+      </div>
+
+      <div class="chat-controls">
+        <input class="input" id="chatInput" placeholder="Escribe tu mensaje..." aria-label="Escribe tu mensaje"/>
+        <button class="btn primary" id="sendBtn">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  /* -----------------------
+     Datos y configuración
+     ----------------------- */
+  const donutData = [
+    {label:'Anorexia', value:38, color:'#1f6fe0'},
+    {label:'Bulimia', value:50, color:'#2db7ff'},
+    {label:'Atracones', value:12, color:'#7ad8ff'}
+  ];
+
+  const resources = [
+    {id:1, title:'Ministerio de Salud', type:'organizacion', desc:'Información oficial y líneas de ayuda', phone:'', URL:"https://www.gob.pe/minsa]"},
+    {id:2, title:'Salud Mental Perú', type:'organizacion', desc:'Recursos y programas de salud mental', phone:'', url:'#'},
+    {id:3, title:'Grupo de Apoyo: Recuperación', type:'grupo', desc:'Grupo semanal moderado por especialistas', phone:'', url:'#'},
+    {id:4, title:'Psicólogos - Directorio', type:'servicio', desc:'Encuentra psicólogos especializados en TCA', phone:'', url:'#'},
+    {id:5, title:'Línea de Crisis (24/7)', type:'servicio', desc:'Atención inmediata para crisis', phone:'900202010', url:'#'},
+  ];
+
+  /* -----------------------
+     Utilidades Donut (SVG)
+     ----------------------- */
+  function renderDonut(elId, data){
+    const wrap = document.getElementById(elId);
+    if(!wrap) return;
+    // clear
+    wrap.innerHTML = '';
+    const size = Math.min(220, wrap.clientWidth || 220);
+    const radius = size/2;
+    const stroke = 28;
+    const svgNS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(svgNS,'svg');
+    svg.setAttribute('width',size);
+    svg.setAttribute('height',size);
+    svg.setAttribute('viewBox',`0 0 ${size} ${size}`);
+    svg.setAttribute('role','img');
+    svg.setAttribute('aria-label','Gráfico de distribución de trastornos alimenticios');
+
+    const total = data.reduce((s,d)=>s+d.value,0);
+    let angleAcc = 0;
+    const cx = size/2, cy = size/2;
+    data.forEach((d, i)=>{
+      const sliceAngle = (d.value/total) * 2 * Math.PI;
+      const startAngle = angleAcc;
+      const endAngle = angleAcc + sliceAngle;
+      angleAcc = endAngle;
+
+      // donut segment path using arcs
+      const innerR = radius - stroke - 2;
+      const outerR = radius - 2;
+      const largeArc = sliceAngle > Math.PI ? 1 : 0;
+
+      const x1 = cx + outerR * Math.cos(startAngle);
+      const y1 = cy + outerR * Math.sin(startAngle);
+      const x2 = cx + outerR * Math.cos(endAngle);
+      const y2 = cy + outerR * Math.sin(endAngle);
+
+      const xi1 = cx + innerR * Math.cos(endAngle);
+      const yi1 = cy + innerR * Math.sin(endAngle);
+      const xi2 = cx + innerR * Math.cos(startAngle);
+      const yi2 = cy + innerR * Math.sin(startAngle);
+
+      const path = document.createElementNS(svgNS,'path');
+      const dAttr = [
+        `M ${x1} ${y1}`,
+        `A ${outerR} ${outerR} 0 ${largeArc} 1 ${x2} ${y2}`,
+        `L ${xi1} ${yi1}`,
+        `A ${innerR} ${innerR} 0 ${largeArc} 0 ${xi2} ${yi2}`,
+        'Z'
+      ].join(' ');
+      path.setAttribute('d', dAttr);
+      path.setAttribute('fill', d.color);
+      path.setAttribute('opacity', '0.95');
+      path.style.transformOrigin = `${cx}px ${cy}px`;
+      path.style.transition = 'transform 700ms cubic-bezier(.2,.8,.2,1), opacity 400ms';
+      path.style.transform = 'scale(0.0)';
+      svg.appendChild(path);
+
+      // small animation timeout
+      setTimeout(()=>{ path.style.transform = 'scale(1)'; }, 120 * i);
+    });
+
+    // center circle
+    const circle = document.createElementNS(svgNS,'circle');
+    circle.setAttribute('cx',cx);
+    circle.setAttribute('cy',cy);
+    circle.setAttribute('r', radius - stroke - 8);
+    circle.setAttribute('fill', 'white');
+    circle.setAttribute('stroke','none');
+    svg.appendChild(circle);
+
+    wrap.appendChild(svg);
+
+    // Center text
+    const centerTxt = document.getElementById('donutCenter');
+    if(centerTxt) centerTxt.textContent = `${total}% estimado`;
+  }
+
+  /* -----------------------
+     Recursos: render + filtros
+     ----------------------- */
+  const resourcesList = document.getElementById('resourcesList');
+  const searchInput = document.getElementById('searchInput');
+  const filterSelect = document.getElementById('filterSelect');
+
+  function renderResources(items){
+    resourcesList.innerHTML = '';
+    if(items.length === 0){
+      const no = document.createElement('div');
+      no.textContent = 'No se encontraron recursos.';
+      no.className = 'muted-small';
+      resourcesList.appendChild(no);
+      return;
+    }
+    items.forEach(it=>{
+      const card = document.createElement('div');
+      card.className = 'resource-card';
+      card.setAttribute('role','listitem');
+      card.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:start;gap:12px">
+          <div style="flex:1">
+            <div style="font-weight:800">${it.title}</div>
+            <div class="muted-small" style="margin-top:6px">${it.desc}</div>
+          </div>
+          <div style="text-align:right;min-width:100px">
+            ${it.phone ? `<div class="muted-small">Tel: <a href="tel:${it.phone}">${it.phone}</a></div>` : ''}
+            <div style="margin-top:10px"><a class="btn" href="${it.url}" onclick="return false">Ver</a></div>
+          </div>
+        </div>
+      `;
+      resourcesList.appendChild(card);
+    });
+  }
+
+  function applyFilter(){
+    const q = (searchInput.value || '').toLowerCase().trim();
+    const f = filterSelect.value;
+    const filtered = resources.filter(r=>{
+      const matchQ = q === '' || (r.title+r.desc).toLowerCase().includes(q);
+      const matchF = f === 'all' || r.type === f;
+      return matchQ && matchF;
+    });
+    renderResources(filtered);
+  }
+
+  searchInput.addEventListener('input', applyFilter);
+  filterSelect.addEventListener('change', applyFilter);
+
+  /* -----------------------
+     Chat: gestión, memoria y riesgo
+     ----------------------- */
+  const openBtn = document.getElementById('openChatBtn');
+  const backdrop = document.getElementById('modalBackdrop');
+  const closeBtn = document.getElementById('closeModal');
+  const chatWindow = document.getElementById('chatWindow');
+  const chatInput = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('sendBtn');
+
+  // Chat memory persisted
+  const MEMORY_KEY = 'entrenos_chat_memory_v1';
+  let chatMemory = JSON.parse(localStorage.getItem(MEMORY_KEY) || '{}');
+
+  // Simple guided prompts
+  const guidedPrompts = [
+    "Hola — Soy un espacio de escucha. ¿Cómo te sientes hoy (1–10)?",
+    "¿Tienes preocupación por la alimentación o tu cuerpo? Puedes contarme.",
+    "Si hay algo que te asuste o que te haga daño, por favor dímelo. Estoy para ayudarte."
+  ];
+
+  // palabras de riesgo (más integrales)
+  const riskWords = [
+    "suicid","morir","morirme","matarme","me quiero morir","no quiero vivir",
+    "cortar","autolesion","lastimarme","quitarme la vida","terminar con todo","acabar con todo"
+  ];
+
+  function containsRisk(text){
+    const t = (text||'').toLowerCase();
+    return riskWords.some(w => t.includes(w));
+  }
+
+  function addMessage(text, sender='bot'){
+    const div = document.createElement('div');
+    div.style.margin = '10px 0';
+    div.style.padding = '10px 12px';
+    div.style.borderRadius = '10px';
+    div.style.whiteSpace = 'pre-wrap';
+    div.style.lineHeight = '1.4';
+    div.style.maxWidth = '82%';
+    if(sender === 'user'){
+      div.style.alignSelf = 'flex-end';
+      div.style.background = 'linear-gradient(90deg,#e6f0ff,#fff)';
+      div.style.border = '1px solid rgba(21,128,255,0.06)';
+      div.textContent = text;
+    } else {
+      div.style.background = '#fbfdff';
+      div.style.border = '1px solid rgba(10,20,40,0.04)';
+      div.textContent = text;
+    }
+    chatWindow.appendChild(div);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
+
+  function openModal(e){
+    e && e.preventDefault();
+    backdrop.style.display = 'flex';
+    backdrop.setAttribute('aria-hidden','false');
+    chatInput.focus();
+    if(!chatMemory.started){
+      chatMemory.started = Date.now();
+      chatMemory.messages = chatMemory.messages || [];
+      localStorage.setItem(MEMORY_KEY, JSON.stringify(chatMemory));
+      // Start guided prompts
+      guidedPrompts.forEach((p, i) => setTimeout(()=> addMessage(p,'bot'), 400 + (i*700)));
+    } else {
+      addMessage('Bienvenido de nuevo — continúe cuando esté listo.', 'bot');
+    }
+  }
+  function closeModal(){
+    backdrop.style.display = 'none';
+    backdrop.setAttribute('aria-hidden','true');
+    openBtn.focus();
+  }
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', function(e){ if(e.target === backdrop) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && backdrop.style.display === 'flex'){ closeModal(); } });
+
+  function handleUserMessage(text){
+    if(!text || !text.trim()) return;
+    addMessage(text, 'user');
+    chatMemory.messages = chatMemory.messages || [];
+    chatMemory.messages.push({from:'user',text,ts:Date.now()});
+    localStorage.setItem(MEMORY_KEY, JSON.stringify(chatMemory));
+
+    // Detect risk
+    if(containsRisk(text)){
+      addMessage("💙 Lamento que te sientas así. Si estás pensando en hacerte daño, por favor busca ayuda inmediata. Llama a una línea de emergencia ahora o habla con alguien de confianza. En Perú: Línea 113 opción 5 (salud mental). Si crees que corres peligro inmediato, llama a emergencias (112). Estoy aquí para escucharte.", 'bot');
+      return;
+    }
+
+    // Very simple heuristic responses
+    const lowMoodMatch = text.match(/(^|\s)(1|2|3)\b/);
+    if(lowMoodMatch){
+      addMessage("Gracias por compartir. Siento que estés pasando un momento difícil. ¿Hay alguien cercano con quien puedas hablar ahora? Si no, puedo darte técnicas breves para calmar la ansiedad.", 'bot');
+      return;
+    }
+
+    if(text.toLowerCase().includes('ansiedad') || text.toLowerCase().includes('ansioso')){
+      addMessage("Te propongo una técnica breve: 4-4-4 — Inhala 4s, mantén 4s, exhala 4s. Repite 4 veces y dime cómo te sientes.", 'bot');
+      return;
+    }
+
+    // default supportive reply
+    addMessage("Gracias por contarlo. Me alegra que lo compartas aquí. ¿Quieres que te proponga recursos locales o técnicas breves para manejar la ansiedad?", 'bot');
+  }
+
+  sendBtn.addEventListener('click', ()=> {
+    const value = chatInput.value.trim();
+    if(!value) return;
+    handleUserMessage(value);
+    chatInput.value = '';
+  });
+
+  chatInput.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); sendBtn.click(); } });
+
+  /* -----------------------
+     Self-check button
+     ----------------------- */
+  const selfCheckBtn = document.getElementById('selfCheckBtn');
+  selfCheckBtn.addEventListener('click', ()=> {
+    // Simple modal free-text prompt inside chat
+    openModal();
+    setTimeout(()=> addMessage("Auto-evaluación rápida: En una escala 1–10, ¿cómo calificarías hoy tu estado general?", 'bot'), 600);
+  });
+
+  /* -----------------------
+     Inicialización
+     ----------------------- */
+  renderDonut('donutWrap', donutData);
+  renderResources(resources);
+  applyFilter();
+
+  // accessibility: focus outlines for clickable chips
+  document.querySelectorAll('.chip').forEach(chip=>{
+    chip.addEventListener('keydown', e=>{
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        alert('Será redirigido a especialistas (demo).');
+      }
+    });
+    chip.addEventListener('click', ()=> alert('Será redirigido a especialistas (demo).'));
+  });
+
+  // Smooth in-page anchors
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', function(e){
+      const targetId = this.getAttribute('href').slice(1);
+      if(!targetId) return;
+      const el = document.getElementById(targetId);
+      if(el){
+        e.preventDefault();
+        el.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
+  });
+
+})();
+</script>
+  
+
+</body>
+</html>
