@@ -9,6 +9,141 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    .team-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.team-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.img {
+  position: left;
+  display: left
+  ;
+}
+
+.team-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.team-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+}
+
+
+
+/* Tarjeta dividida en dos columnas */
+.team-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 320px;
+  max-width: 320px;
+  padding: 20px;
+  margin: 0 10px;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* La imagen dentro de la tarjeta */
+.team-card img {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* Texto */
+.team-card .team-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.team-card .team-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.team-card .team-info p {
+  font-size: 0.9rem;
+  margin: 4px 0;
+}
+
+/* Responsivo para celulares */
+@media (max-width: 480px) {
+  .team-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .team-card .team-info {
+    text-align: center;
+  }
+
+  .team-card img {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+.team-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  background: #111;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 20px;
+  z-index: 10;
+}
+
+.carousel-btn:hover {
+  background: #333;
+}
+
+.carousel-btn.prev {
+  left: -10px;
+}
+
+.carousel-btn.next {
+  right: -10px;
+}
+
+@media (max-width: 768px) {
+  .team-card {
+    min-width: 250px;
+  }
+  .carousel-btn.prev {
+    left: 0;
+  }
+  .carousel-btn.next {
+    right: 0;
+  }
+}
+
+
+
     :root{
       --bg-1: #eef9fb;
       --bg-2: #f6fbff;
@@ -254,7 +389,7 @@
         </div>
 
         <div class="info card" aria-labelledby="apoyo">
-          <h3 id="apoyo">¿Qué proponemos?</h3>
+          <h3 id="apoyo">¿Que proponemos?</h3>
           <p class="muted-small">Como manera de solución temporal o forma de salida, hemos ideado un chatbot especializado en medir en base a la evaluación emocional calificada del 1 al 10, la cual tiene en cuenta la ansiedad, identificación de problemas (Bulimia, Anorexia, etc) entre otras preguntas, en base la calificación y resultado. El bot te soltará una frase motivacional e incluso un consejo para mejorar tu alimentación.
           </p>
         </div>
@@ -326,6 +461,91 @@
         </div>
       </div>
     </section>
+
+  <section id="quienes-somos" class="team-section">
+  <h2>Quiénes Somos</h2>
+
+  <div class="team-carousel">
+    <button class="carousel-btn prev">&#10094;</button>
+
+    <div class="team-track">
+      <!-- Tarjeta 1 -->
+     <div class="team-card">
+      <img src="Img123/1.jpeg" alt="Integrante">
+
+      <div class="team-info">
+        <h3>Lucía de Fátima Neyra Asmat</h3>
+        <p><strong>Edad:</strong> 18 años</p>
+        <p><strong>Carrera:</strong>Arquitectura de Interiores</p>
+        <p><strong>Participación:</strong> Coordinadora</p>
+      </div>
+      </div>
+
+      <!-- Tarjeta 2 -->
+     <div class="team-card">
+      <img src="Img123/2.jpeg" alt="Integrante">
+
+      <div class="team-info">
+        <h3>Camila Alexandra Bueno Cabello</h3>
+        <p><strong>Edad:</strong>17 años</p>
+        <p><strong>Carrera:</strong> Arquitectura de Interiores</p>
+        <p><strong>Participación:</strong> Entrevistadora</p>
+      </div>
+      </div>
+
+      <!-- Tarjeta 3 -->
+      <div class="team-card">
+      <img src="Img123/3.jpeg" alt="Integrante">
+
+      <div class="team-info">
+        <h3>Shantall Cielo Silva Quispe </h3>
+        <p><strong>Edad:</strong> 17 años</p>
+        <p><strong>Carrera:</strong> Arquitectura de Interiores</p>
+        <p><strong>Participación:</strong> Investigación</p>
+      </div>
+      </div>
+
+      <!-- Tarjeta 4 -->
+      <div class="team-card">
+      <img src="Img123/4.jpeg" alt="Integrante">
+
+      <div class="team-info">
+        <h3>Gael Alfredo Merino Fano</h3>
+        <p><strong>Edad:</strong> 17 años</p>
+        <p><strong>Carrera:</strong> Diseño Grafico</p>
+        <p><strong>Participación:</strong> Investigación </p>
+      </div>
+      </div>
+      <!-- Tarjeta 5 -->
+      <div class="team-card">
+      <img src="tu-imagen.jpg" alt="Integrante">
+
+      <div class="team-info">
+        <h3>Rudy Valencia Cunza</h3>
+        <p><strong>Edad:</strong> 22 años</p>
+        <p><strong>Carrera:</strong> Arquitectura</p>
+        <p><strong>Participación:</strong> Desarrollador Web</p>
+        </Div>
+       
+      </div>
+    
+<!-- Tarjeta  -->
+      <div class="team-card">
+      <img src="Img123/6.jpeg" alt="Integrante">
+
+      <div class="team-info">
+        <h3>Marcello bobbio Manuel pinares</h3>
+        <p><strong>Edad:</strong> 17 años</p>
+        <p><strong>Carrera:</strong> Diseñador Gráfico</p>
+        <p><strong>Participación:</strong> Desarrollador Web</p>
+        </Div>
+       
+      </div>
+    </div>
+    <button class="carousel-btn next">&#10095;</button>
+  </div>
+</Section>
+
 
     <!-- Recursos -->
     <section id="recursos" style="margin-top:22px;">
@@ -709,6 +929,37 @@
 })();
 </script>
   
+<script>
+  const track = document.querySelector('.team-track');
+  const cards = document.querySelectorAll('.team-card');
+  const btnPrev = document.querySelector('.carousel-btn.prev');
+  const btnNext = document.querySelector('.carousel-btn.next');
+
+  let index = 0;
+
+  function updateCarousel() {
+    const cardWidth = cards[0].offsetWidth + 20; 
+    track.style.transform = `translateX(${-index * cardWidth}px)`;
+  }
+
+  btnNext.addEventListener('click', () => {
+    index++;
+    if (index >= cards.length) {
+      index = 0; // vuelve al primero
+    }
+    updateCarousel();
+  });
+
+  btnPrev.addEventListener('click', () => {
+    index--;
+    if (index < 0) {
+      index = cards.length - 1; // vuelve al último
+    }
+    updateCarousel();
+  });
+
+  window.addEventListener('resize', updateCarousel);
+</script>
 
 </body>
 </html>
